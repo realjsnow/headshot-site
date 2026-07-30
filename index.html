@@ -29,17 +29,34 @@
     <p class="tagline">For Actors &amp; Creatives in Las Vegas</p>
   </header>
 
+  <!-- TESTIMONIALS: placeholder quotes — swap in real ones.
+       They fade through one at a time. Add or remove <blockquote> blocks freely. -->
+  <section class="testimonials" id="testimonials" aria-label="Client testimonials">
+    <blockquote class="quote is-active">
+      <p>“Booked two auditions the week I sent these out.”</p>
+      <cite>Placeholder — Actor</cite>
+    </blockquote>
+    <blockquote class="quote">
+      <p>“Jason made me forget there was a camera there at all.”</p>
+      <cite>Placeholder — Stage Actor</cite>
+    </blockquote>
+    <blockquote class="quote">
+      <p>“Finally a headshot that actually looks like me.”</p>
+      <cite>Placeholder — Creative</cite>
+    </blockquote>
+  </section>
+
   <!-- PHOTOS: swap the src on each img below to your real files (drop them in the /photos folder).
        alt = for search engines. data-caption = shown under the photo in the lightbox.
        To add another photo, copy one whole <div class="photo"> block and paste it in. -->
   <section class="photos" id="photo-slider">
     <div class="photo-track" id="photo-track">
-      <div class="photo"><img src="photos/photo1.svg" alt="Las Vegas actor headshot with soft natural light" data-caption="Actor headshot in natural light" draggable="false"></div>
-      <div class="photo"><img src="photos/photo2.svg" alt="Theatrical headshot for a Las Vegas stage actor" data-caption="Theatrical headshot for stage" draggable="false"></div>
-      <div class="photo"><img src="photos/photo3.svg" alt="Bright commercial headshot for a Las Vegas actor" data-caption="Commercial and on-camera look" draggable="false"></div>
-      <div class="photo"><img src="photos/photo4.svg" alt="Studio headshot on a clean backdrop in Las Vegas" data-caption="Studio session, clean backdrop" draggable="false"></div>
-      <div class="photo"><img src="photos/photo5.svg" alt="Outdoor Las Vegas portrait shot at golden hour" data-caption="Outdoor portrait at golden hour" draggable="false"></div>
-      <div class="photo"><img src="photos/photo6.svg" alt="Creative portrait of a Las Vegas musician" data-caption="Creative portrait for musicians" draggable="false"></div>
+      <div class="photo"><img src="photos/las-vegas-actor-headshot-jason-snow-01.jpg" alt="Young actor headshot on a black studio backdrop, photographed in Las Vegas" data-caption="Young actor, studio black backdrop" draggable="false"></div>
+      <div class="photo"><img src="photos/las-vegas-actor-headshot-jason-snow-02.jpg" alt="Actor headshot with soft lighting on a dark backdrop in Las Vegas" data-caption="Soft light on a dark backdrop" draggable="false"></div>
+      <div class="photo"><img src="photos/las-vegas-actor-headshot-jason-snow-03.jpg" alt="Commercial actor headshot on a light grey backdrop in Las Vegas" data-caption="Commercial headshot, light backdrop" draggable="false"></div>
+      <div class="photo"><img src="photos/las-vegas-actor-headshot-jason-snow-04.jpg" alt="Official portrait of a judge in robes with the U.S. and Nevada flags, Las Vegas" data-caption="Official portrait with flags" draggable="false"></div>
+      <div class="photo"><img src="photos/las-vegas-actor-headshot-jason-snow-05.jpg" alt="Dramatic theatrical actor headshot on a dark backdrop in Las Vegas" data-caption="Dramatic theatrical headshot" draggable="false"></div>
+      <div class="photo"><img src="photos/las-vegas-actor-headshot-jason-snow-06.jpg" alt="Actor headshot with a natural smile on a dark backdrop in Las Vegas" data-caption="Warm, natural smile" draggable="false"></div>
       <div class="photo"><img src="photos/photo7.svg" alt="Personal branding headshot for a Las Vegas creative" data-caption="Personal branding portrait" draggable="false"></div>
       <div class="photo"><img src="photos/photo8.svg" alt="Professional LinkedIn headshot taken in Las Vegas" data-caption="Professional headshot for LinkedIn" draggable="false"></div>
       <div class="photo"><img src="photos/photo9.svg" alt="Portrait of a Las Vegas dancer and performer" data-caption="Dancer and performer portrait" draggable="false"></div>
@@ -84,6 +101,7 @@
 <script src="protect-images.js"></script>
 <script src="slider.js"></script>
 <script src="text-link.js"></script>
+<script src="testimonials.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>

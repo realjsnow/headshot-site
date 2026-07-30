@@ -28,6 +28,7 @@
 
   slider.addEventListener('pointerdown', function (e) {
     if (pointerId !== null) return;
+    pauseAuto();
     pointerId = e.pointerId;
     dragging = true;
     captured = false;
@@ -66,6 +67,7 @@
     pointerId = null;
     offset = clamp(offset);
     apply(true);
+    resumeAutoSoon();
   }
 
   slider.addEventListener('pointerup', endDrag);
@@ -76,6 +78,62 @@
     apply(false);
   });
 
+  // --- Auto-slide ---
+  // Drifts back and forth on its own so the extra photos are discoverable,
+  // and yields immediately to hover, drag, or an open lightbox.
+  var SPEED = 16;          // px per second
+  var RESUME_DELAY = 2500; // ms of stillness before it picks back up
+
+  var autoOn = false;
+  var autoDir = -1;
+  var lastFrame = 0;
+  var resumeTimer = null;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function pauseAuto() {
+    autoOn = false;
+    clearTimeout(resumeTimer);
+  }
+
+  function resumeAutoSoon() {
+    clearTimeout(resumeTimer);
+    if (reduceMotion.matches) return;
+    resumeTimer = setTimeout(function () {
+      lastFrame = 0;
+      autoOn = true;
+    }, RESUME_DELAY);
+  }
+
+  function tick(now) {
+    requestAnimationFrame(tick);
+    if (!autoOn || dragging) { lastFrame = now; return; }
+
+    var min = minOffset();
+    if (min === 0) return; // everything already fits, nothing to scroll
+
+    var elapsed = lastFrame ? (now - lastFrame) : 0;
+    lastFrame = now;
+    if (elapsed > 100) return; // skip huge jumps after a background tab
+
+    offset += autoDir * SPEED * (elapsed / 1000);
+
+    if (offset <= min) {
+      offset = min;
+      autoDir = 1;
+    } else if (offset >= 0) {
+      offset = 0;
+      autoDir = -1;
+    }
+
+    apply(false);
+  }
+
+  slider.addEventListener('pointerenter', pauseAuto);
+  slider.addEventListener('pointerleave', resumeAutoSoon);
+
+  requestAnimationFrame(tick);
+  resumeAutoSoon();
+
   // --- Lightbox ---
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightbox-img');
@@ -83,6 +141,7 @@
   var closeBtn = document.getElementById('lightbox-close');
 
   function openLightbox(img) {
+    pauseAuto();
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
     lightboxCaption.textContent = img.getAttribute('data-caption') || '';
@@ -97,6 +156,7 @@
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('lightbox-open');
     lightboxImg.src = '';
+    resumeAutoSoon();
   }
 
   // Delegated so it still fires if the browser retargets the click.
