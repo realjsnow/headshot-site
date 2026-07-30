@@ -573,11 +573,6 @@ body.about-page {
     flex-direction: column;
     gap: 28px;
   }
-
-  .about-photo.photo-a .about-photo-frame,
-  .about-photo.photo-b .about-photo-frame {
-    aspect-ratio: 3 / 2;
-  }
 }
 
 @media (max-width: 480px) {
