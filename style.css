@@ -319,6 +319,8 @@ body {
   margin-bottom: 30px;
   cursor: grab;
   touch-action: pan-y;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
 }
 
 .photos.dragging {
@@ -510,7 +512,7 @@ body.about-page {
 .back-btn {
   display: inline-block;
   width: auto;
-  margin-bottom: 48px;
+  margin-bottom: 28px;
   padding: 14px 24px;
 }
 
