@@ -3,17 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>About Jason — Las Vegas Headshot Photographer</title>
+
 <meta name="description" content="Meet Jason Snow, a Las Vegas headshot photographer working with actors, models, and creatives. See sample work and book an actor headshot session in Las Vegas, NV.">
+
 <meta name="keywords" content="Las Vegas headshot photographer, actor headshots Las Vegas, headshot photography Las Vegas, professional headshots Las Vegas, actor headshots Nevada, personal branding photographer Las Vegas">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="about-page">
 
 <div class="flash-overlay" id="flash-overlay"></div>
+
 <script>
   if (sessionStorage.getItem('flashed')) {
     document.getElementById('flash-overlay').remove();
@@ -31,28 +39,72 @@
     <p class="about-tagline">Director, Photographer, and Actor</p>
   </header>
 
-  <!-- AVATAR + BIO: replace photos/avatar.svg with a real headshot, and swap the placeholder paragraph below.
-       The avatar floats, so the bio text wraps around it. -->
   <section class="about-intro">
+
     <div class="avatar">
-      <img src="photos/jason-snow-las-vegas-photographer.jpg" alt="Jason Snow, Las Vegas photographer, director, and actor">
+      <img
+        src="photos/jason-snow-las-vegas-photographer.jpg"
+        alt="Jason Snow, Las Vegas photographer, director, and actor"
+        style="width: 100%; height: 100%; object-fit: cover; object-position: center 15%;"
+      >
     </div>
+
     <p class="about-bio-text">
       Jason Snow is a Las Vegas based photographer and director specializing in headshots
       that make actors stand out to casting directors. He has directed short films, acted in
-      major stage productions, and taken photos of major artists, celebrities and politicians.
+      TV stage productions, and taken photos with major artists, celebrities and politicians.
     </p>
+
   </section>
 
-  <!-- GALLERY: shows range beyond headshots. Captions intentionally left blank —
-       add a <figcaption class="about-caption">...</figcaption> under either image if wanted. -->
   <section class="about-gallery">
-    <figure class="about-photo photo-a">
-      <div class="about-photo-frame"><img src="photos/travel-photography-prague-street.jpg" alt="Travel photography by Jason Snow, a street scene in Prague"></div>
+
+    <figure
+      class="about-photo photo-a"
+      style="height: auto !important; overflow: visible !important;"
+    >
+      <div
+        class="about-photo-frame"
+        style="height: auto !important;"
+      >
+        <img
+          src="photos/travel-photography-prague-street.jpg"
+          alt="Street photography in Prague, Czech Republic"
+          style="display: block; width: 100%; height: auto !important; object-fit: contain !important;"
+        >
+      </div>
+
+      <figcaption
+        class="about-caption"
+        style="display: block !important; visibility: visible !important; opacity: 1 !important; margin-top: 10px;"
+      >
+        August 2024, Prague, Czech Republic &mdash; Walking down the street toward Prague Castle.
+      </figcaption>
     </figure>
-    <figure class="about-photo photo-b">
-      <div class="about-photo-frame"><img src="photos/lifestyle-product-photography.jpg" alt="Lifestyle and product photography by Jason Snow, holiday themed"></div>
+
+    <figure
+      class="about-photo photo-b"
+      style="height: auto !important; overflow: visible !important;"
+    >
+      <div
+        class="about-photo-frame"
+        style="height: auto !important;"
+      >
+        <img
+          src="photos/lifestyle-product-photography.jpg"
+          alt="Lifestyle product photography for children's lamps"
+          style="display: block; width: 100%; height: auto !important; object-fit: contain !important;"
+        >
+      </div>
+
+      <figcaption
+        class="about-caption"
+        style="display: block !important; visibility: visible !important; opacity: 1 !important; margin-top: 10px;"
+      >
+        October 2025, Madrid, Spain &mdash; Holiday product photography for Sell Huggable children&rsquo;s lamps.
+      </figcaption>
     </figure>
+
   </section>
 
   <footer class="about-footer">
@@ -62,8 +114,10 @@
 </div>
 
 <script src="protect-images.js"></script>
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
