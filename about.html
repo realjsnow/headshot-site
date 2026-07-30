@@ -6,16 +6,28 @@
 <title>About Jason — Las Vegas Headshot Photographer</title>
 <meta name="description" content="Meet Jason Snow, a Las Vegas headshot photographer working with actors, models, and creatives. See sample work and book an actor headshot session in Las Vegas, NV.">
 <meta name="keywords" content="Las Vegas headshot photographer, actor headshots Las Vegas, headshot photography Las Vegas, professional headshots Las Vegas, actor headshots Nevada, personal branding photographer Las Vegas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="about-page">
+
+<div class="flash-overlay" id="flash-overlay"></div>
+<script>
+  if (sessionStorage.getItem('flashed')) {
+    document.getElementById('flash-overlay').remove();
+  } else {
+    sessionStorage.setItem('flashed', '1');
+  }
+</script>
 
 <div class="about-wrap">
 
   <a class="btn back-btn" href="index.html">&larr; Back</a>
 
   <header class="about-header">
-    <h1 data-scramble>Jason Snow</h1>
+    <h1>Jason Snow</h1>
     <p class="about-tagline">Photos for Las Vegas Actors and Creatives</p>
   </header>
 
@@ -43,7 +55,6 @@
 </div>
 
 <script src="protect-images.js"></script>
-<script src="scramble.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>

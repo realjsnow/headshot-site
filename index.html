@@ -6,14 +6,26 @@
 <title>Book Photos With Jason — Las Vegas Headshot Photography</title>
 <meta name="description" content="Book a professional headshot session with Jason Snow, a Las Vegas headshot photographer for actors, models, and creatives. Actor headshots, personal branding photos, and LinkedIn headshots in Las Vegas, NV.">
 <meta name="keywords" content="Las Vegas headshot photographer, actor headshots Las Vegas, headshot photography Las Vegas, professional headshots Las Vegas, actor headshots Nevada, personal branding photographer Las Vegas, LinkedIn headshots Las Vegas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<div class="flash-overlay" id="flash-overlay"></div>
+<script>
+  if (sessionStorage.getItem('flashed')) {
+    document.getElementById('flash-overlay').remove();
+  } else {
+    sessionStorage.setItem('flashed', '1');
+  }
+</script>
+
 <main class="card">
 
   <header class="header">
-    <h1 data-scramble>Book Photos With Jason</h1>
+    <h1>Book Photos With Jason</h1>
     <p class="tagline">Photos for Las Vegas Actors and Creatives</p>
   </header>
 
@@ -51,7 +63,6 @@
 </main>
 
 <script src="protect-images.js"></script>
-<script src="scramble.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>

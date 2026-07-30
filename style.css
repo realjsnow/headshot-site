@@ -2,6 +2,99 @@
   box-sizing: border-box;
 }
 
+.flash-overlay {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 9999;
+  pointer-events: none;
+  animation: camera-flash 0.7s ease-out forwards;
+}
+
+@keyframes camera-flash {
+  0% { opacity: 1; }
+  12% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flash-overlay {
+    display: none;
+  }
+}
+
+@keyframes fade-slide-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card,
+.about-wrap {
+  animation: fade-slide-up 0.6s ease-out both;
+}
+
+.back-btn {
+  animation: fade-slide-up 0.5s ease-out both;
+  animation-delay: 0.06s;
+}
+
+.header h1,
+.about-header h1 {
+  animation: fade-slide-up 0.55s ease-out both;
+  animation-delay: 0.12s;
+}
+
+.tagline,
+.about-tagline {
+  animation: fade-slide-up 0.55s ease-out both;
+  animation-delay: 0.18s;
+}
+
+.photos,
+.about-intro {
+  animation: fade-slide-up 0.55s ease-out both;
+  animation-delay: 0.26s;
+}
+
+.about-gallery {
+  animation: fade-slide-up 0.55s ease-out both;
+  animation-delay: 0.34s;
+}
+
+.links .btn {
+  animation: fade-slide-up 0.5s ease-out both;
+}
+
+.links .btn:nth-child(1) { animation-delay: 0.34s; }
+.links .btn:nth-child(2) { animation-delay: 0.4s; }
+.links .btn:nth-child(3) { animation-delay: 0.46s; }
+
+/* .btn-primary already has its own infinite marquee-glow pulse (defined below);
+   combine it with the entrance animation here so one doesn't clobber the other. */
+.links .btn.btn-primary {
+  animation: fade-slide-up 0.5s ease-out 0.34s both, marquee-glow 3s ease-in-out 0.34s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .about-wrap,
+  .back-btn,
+  .header h1,
+  .about-header h1,
+  .tagline,
+  .about-tagline,
+  .photos,
+  .about-intro,
+  .about-gallery,
+  .links .btn {
+    animation: none;
+  }
+
+  .links .btn.btn-primary {
+    animation: marquee-glow 3s ease-in-out infinite;
+  }
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -10,7 +103,7 @@ body {
   justify-content: center;
   padding: 32px 16px;
   background: #0d0d0d;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   color: #f5f3f0;
 }
 
@@ -33,7 +126,7 @@ body {
   margin: 0 0 8px;
   font-size: 1.7rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: #ffffff;
 }
 
