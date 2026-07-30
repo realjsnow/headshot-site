@@ -15,9 +15,21 @@ ORIGINALS="$PHOTOS/originals"
 MAX_EDGE=1600   # px on the long edge — plenty for the slider and lightbox
 QUALITY=70      # sips formatOptions, 0-100
 
+# Generated assets that live in photos/ but aren't raw camera drops — never
+# pull these into the originals/ pipeline.
+SKIP=("og-share-image.jpg")
+
 mkdir -p "$ORIGINALS"
 
 shopt -s nullglob nocaseglob
+
+is_skipped() {
+  local name="$1"
+  for s in "${SKIP[@]}"; do
+    [ "$name" = "$s" ] && return 0
+  done
+  return 1
+}
 
 # 1. Move any newly dropped full-res files into originals/ under a lowercase name.
 #    A file whose name already exists in originals/ is an output this script
@@ -28,6 +40,8 @@ for src in "$PHOTOS"/*.jpg "$PHOTOS"/*.jpeg "$PHOTOS"/*.png "$PHOTOS"/*.heic; do
   base="$(basename "$src")"
   lower="$(echo "$base" | tr '[:upper:]' '[:lower:]')"
   stem="${lower%.*}"
+
+  is_skipped "$lower" && continue
 
   if [ -e "$ORIGINALS/$lower" ] || [ -e "$ORIGINALS/$stem.jpg" ]; then
     continue

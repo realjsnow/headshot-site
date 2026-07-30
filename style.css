@@ -489,7 +489,7 @@ body:not(.about-page)::before {
   z-index: 1;
   font-weight: 800;
   letter-spacing: 0.015em;
-  background-image: linear-gradient(100deg, #f7cc4d 30%, #fff8dc 48%, #f7cc4d 66%);
+  background-image: linear-gradient(100deg, #ffe7a9 30%, #fffbf0 48%, #ffe7a9 66%);
   background-size: 220% auto;
   background-position: 200% center;
   background-clip: text;
@@ -640,6 +640,12 @@ body.about-page {
 
 .about-photo {
   margin: 0;
+}
+
+/* Landscape feature photo runs full width below the two portraits instead
+   of being squeezed into a narrow column. */
+.about-photo.photo-c {
+  grid-column: 1 / -1;
 }
 
 /* No forced aspect-ratio or object-fit:cover here on purpose — these are
