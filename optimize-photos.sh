@@ -20,11 +20,20 @@ mkdir -p "$ORIGINALS"
 shopt -s nullglob nocaseglob
 
 # 1. Move any newly dropped full-res files into originals/ under a lowercase name.
+#    A file whose name already exists in originals/ is an output this script
+#    generated on an earlier run — never move it, or it would overwrite the
+#    full-resolution original with the downscaled copy.
 for src in "$PHOTOS"/*.jpg "$PHOTOS"/*.jpeg "$PHOTOS"/*.png "$PHOTOS"/*.heic; do
   [ -f "$src" ] || continue
   base="$(basename "$src")"
   lower="$(echo "$base" | tr '[:upper:]' '[:lower:]')"
-  mv "$src" "$ORIGINALS/$lower"
+  stem="${lower%.*}"
+
+  if [ -e "$ORIGINALS/$lower" ] || [ -e "$ORIGINALS/$stem.jpg" ]; then
+    continue
+  fi
+
+  mv -n "$src" "$ORIGINALS/$lower"
 done
 
 # 2. Export a web-sized copy of every original.
