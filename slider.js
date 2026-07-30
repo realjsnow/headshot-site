@@ -3,10 +3,13 @@
   var track = document.getElementById('photo-track');
   if (!slider || !track) return;
 
+  var DRAG_THRESHOLD = 4;
+
   var offset = 0;
   var dragStartX = 0;
   var dragStartOffset = 0;
   var dragging = false;
+  var captured = false;
   var moved = 0;
   var pointerId = null;
 
@@ -14,30 +17,40 @@
     return Math.min(0, slider.clientWidth - track.scrollWidth);
   }
 
+  function clamp(value) {
+    return Math.max(minOffset(), Math.min(0, value));
+  }
+
   function apply(settle) {
     track.classList.toggle('settling', !!settle);
     track.style.transform = 'translateX(' + offset + 'px)';
-  }
-
-  function clamp(value) {
-    return Math.max(minOffset(), Math.min(0, value));
   }
 
   slider.addEventListener('pointerdown', function (e) {
     if (pointerId !== null) return;
     pointerId = e.pointerId;
     dragging = true;
+    captured = false;
     moved = 0;
     dragStartX = e.clientX;
     dragStartOffset = offset;
-    slider.classList.add('dragging');
-    slider.setPointerCapture(pointerId);
   });
 
   slider.addEventListener('pointermove', function (e) {
     if (!dragging || e.pointerId !== pointerId) return;
     var delta = e.clientX - dragStartX;
     moved = Math.max(moved, Math.abs(delta));
+
+    // Only take pointer capture once this is clearly a drag, not a click.
+    // Capturing on pointerdown would retarget the click event away from the
+    // photo and break opening the lightbox.
+    if (!captured && moved > DRAG_THRESHOLD) {
+      captured = true;
+      slider.setPointerCapture(pointerId);
+      slider.classList.add('dragging');
+    }
+
+    if (!captured) return;
     offset = clamp(dragStartOffset + delta);
     apply(false);
   });
@@ -46,9 +59,10 @@
     if (!dragging || (e && e.pointerId !== pointerId)) return;
     dragging = false;
     slider.classList.remove('dragging');
-    if (pointerId !== null && slider.hasPointerCapture(pointerId)) {
+    if (captured && pointerId !== null && slider.hasPointerCapture(pointerId)) {
       slider.releasePointerCapture(pointerId);
     }
+    captured = false;
     pointerId = null;
     offset = clamp(offset);
     apply(true);
@@ -83,12 +97,11 @@
     lightboxImg.src = '';
   }
 
-  track.querySelectorAll('.photo img').forEach(function (img) {
-    img.addEventListener('click', function () {
-      // Ignore the click that ends a drag gesture.
-      if (moved > 5) return;
-      openLightbox(img);
-    });
+  // Delegated so it still fires if the browser retargets the click.
+  slider.addEventListener('click', function (e) {
+    if (moved > DRAG_THRESHOLD) return;
+    var img = e.target.closest('.photo img');
+    if (img) openLightbox(img);
   });
 
   closeBtn.addEventListener('click', closeLightbox);
