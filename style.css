@@ -77,6 +77,16 @@ body {
   display: block;
 }
 
+.photo img,
+.about-photo img,
+.avatar img {
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
 .links {
   display: flex;
   flex-direction: column;
@@ -188,17 +198,11 @@ body.about-page {
   padding: 56px 24px 72px;
 }
 
-.back-link {
+.back-btn {
   display: inline-block;
-  margin-bottom: 56px;
-  font-size: 0.85rem;
-  letter-spacing: 0.03em;
-  color: #8a8579;
-  text-decoration: none;
-}
-
-.back-link:hover {
-  color: #f5f3f0;
+  width: auto;
+  margin-bottom: 48px;
+  padding: 14px 24px;
 }
 
 .about-header {
