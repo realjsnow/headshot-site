@@ -99,11 +99,17 @@ body {
   background: #b3202f;
   border-color: #b3202f;
   color: #ffffff;
+  animation: marquee-glow 3s ease-in-out infinite;
 }
 
 .btn-primary:hover {
   background: #c8283a;
   border-color: #c8283a;
+}
+
+@keyframes marquee-glow {
+  0%, 100% { box-shadow: 0 0 16px rgba(255, 209, 102, 0.15), 0 0 0 rgba(0,0,0,0); }
+  50% { box-shadow: 0 0 30px rgba(255, 209, 102, 0.4), 0 0 60px rgba(179, 32, 47, 0.25); }
 }
 
 .sparkle-wrap {
@@ -118,27 +124,48 @@ body {
 
 .sparkle {
   position: absolute;
-  top: 50%;
-  left: -8%;
-  color: #ffd166;
-  font-size: 13px;
-  line-height: 1;
-  opacity: 0;
+  width: 14px;
+  height: 14px;
+  fill: #ffd166;
   pointer-events: none;
-  text-shadow: 0 0 6px rgba(255, 209, 102, 0.9), 0 0 12px rgba(255, 209, 102, 0.5);
+  opacity: 0;
+  filter: drop-shadow(0 0 3px rgba(255, 209, 102, 0.95)) drop-shadow(0 0 7px rgba(255, 209, 102, 0.55));
+}
+
+.sparkle.silver {
+  fill: #f2f2f2;
+  filter: drop-shadow(0 0 3px rgba(242, 242, 242, 0.95)) drop-shadow(0 0 7px rgba(242, 242, 242, 0.5));
+}
+
+.sp-travel {
+  top: 50%;
+  left: -10%;
   animation: sparkle-travel 4.5s linear infinite;
 }
 
-.s1 { top: 32%; animation-delay: 0s; font-size: 12px; }
-.s2 { top: 58%; animation-delay: 1.5s; font-size: 15px; }
-.s3 { top: 45%; animation-delay: 3s; font-size: 11px; }
+.st1 { top: 28%; width: 12px; height: 12px; animation-delay: 0s; }
+.st2 { top: 60%; width: 17px; height: 17px; animation-delay: 1.5s; }
+.st3 { top: 45%; width: 11px; height: 11px; animation-delay: 3s; }
 
 @keyframes sparkle-travel {
-  0% { left: -8%; opacity: 0; transform: translateY(-50%) rotate(0deg) scale(0.6); }
+  0% { left: -10%; opacity: 0; transform: translateY(-50%) rotate(0deg) scale(0.5); }
   10% { opacity: 1; }
-  50% { transform: translateY(-50%) rotate(180deg) scale(1); }
+  50% { transform: translateY(-50%) rotate(180deg) scale(1.15); }
   90% { opacity: 1; }
-  100% { left: 105%; opacity: 0; transform: translateY(-50%) rotate(360deg) scale(0.6); }
+  100% { left: 105%; opacity: 0; transform: translateY(-50%) rotate(360deg) scale(0.5); }
+}
+
+.sp-twinkle {
+  animation: sparkle-twinkle 2.4s ease-in-out infinite;
+}
+
+.sw1 { top: 20%; left: 14%; width: 9px; height: 9px; animation-delay: 0.3s; }
+.sw2 { top: 70%; left: 30%; width: 8px; height: 8px; animation-delay: 1.2s; }
+.sw3 { top: 24%; left: 82%; width: 10px; height: 10px; animation-delay: 2s; }
+
+@keyframes sparkle-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(90deg); }
 }
 
 .footer {
