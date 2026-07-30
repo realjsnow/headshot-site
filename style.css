@@ -255,9 +255,9 @@ body {
 .header h1 {
   margin: 0 0 10px;
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-  font-size: 2.1rem;
+  font-size: clamp(1.55rem, 6.5vw, 2.1rem);
   font-weight: 700;
-  line-height: 1.12;
+  line-height: 1.15;
   letter-spacing: -0.01em;
   color: #ffffff;
 }
