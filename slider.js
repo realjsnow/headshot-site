@@ -139,12 +139,22 @@
   var lightboxImg = document.getElementById('lightbox-img');
   var lightboxCaption = document.getElementById('lightbox-caption');
   var closeBtn = document.getElementById('lightbox-close');
+  var prevBtn = document.getElementById('lightbox-prev');
+  var nextBtn = document.getElementById('lightbox-next');
+  var galleryImgs = Array.prototype.slice.call(track.querySelectorAll('.photo img'));
+  var currentIndex = 0;
 
-  function openLightbox(img) {
-    pauseAuto();
+  function showAt(index) {
+    currentIndex = (index + galleryImgs.length) % galleryImgs.length;
+    var img = galleryImgs[currentIndex];
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
     lightboxCaption.textContent = img.getAttribute('data-caption') || '';
+  }
+
+  function openLightbox(img) {
+    pauseAuto();
+    showAt(galleryImgs.indexOf(img));
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.classList.add('lightbox-open');
@@ -167,12 +177,17 @@
   });
 
   closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', function () { showAt(currentIndex - 1); });
+  nextBtn.addEventListener('click', function () { showAt(currentIndex + 1); });
 
   lightbox.addEventListener('click', function (e) {
     if (e.target === lightbox) closeLightbox();
   });
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') showAt(currentIndex - 1);
+    else if (e.key === 'ArrowRight') showAt(currentIndex + 1);
   });
 })();
