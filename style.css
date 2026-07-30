@@ -137,31 +137,16 @@ body {
   filter: drop-shadow(0 0 3px rgba(242, 242, 242, 0.95)) drop-shadow(0 0 7px rgba(242, 242, 242, 0.5));
 }
 
-.sp-travel {
-  top: 50%;
-  left: -10%;
-  animation: sparkle-travel 4.5s linear infinite;
-}
-
-.st1 { top: 28%; width: 12px; height: 12px; animation-delay: 0s; }
-.st2 { top: 60%; width: 17px; height: 17px; animation-delay: 1.5s; }
-.st3 { top: 45%; width: 11px; height: 11px; animation-delay: 3s; }
-
-@keyframes sparkle-travel {
-  0% { left: -10%; opacity: 0; transform: translateY(-50%) rotate(0deg) scale(0.5); }
-  10% { opacity: 1; }
-  50% { transform: translateY(-50%) rotate(180deg) scale(1.15); }
-  90% { opacity: 1; }
-  100% { left: 105%; opacity: 0; transform: translateY(-50%) rotate(360deg) scale(0.5); }
-}
-
 .sp-twinkle {
   animation: sparkle-twinkle 2.4s ease-in-out infinite;
 }
 
-.sw1 { top: 20%; left: 14%; width: 9px; height: 9px; animation-delay: 0.3s; }
-.sw2 { top: 70%; left: 30%; width: 8px; height: 8px; animation-delay: 1.2s; }
-.sw3 { top: 24%; left: 82%; width: 10px; height: 10px; animation-delay: 2s; }
+.sw1 { top: 12%; left: 29%; width: 9px; height: 9px; animation-delay: 0.3s; }
+.sw2 { top: 80%; left: 34%; width: 8px; height: 8px; animation-delay: 1.2s; }
+.sw3 { top: 18%; left: 67%; width: 10px; height: 10px; animation-delay: 2s; }
+.sw4 { top: 78%; left: 62%; width: 8px; height: 8px; animation-delay: 0.8s; }
+.sw5 { top: 48%; left: 21%; width: 8px; height: 8px; animation-delay: 1.6s; }
+.sw6 { top: 46%; left: 79%; width: 9px; height: 9px; animation-delay: 2.4s; }
 
 @keyframes sparkle-twinkle {
   0%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); }
