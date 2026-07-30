@@ -544,8 +544,17 @@ body:not(.about-page)::after {
   z-index: 1;
   font-weight: 800;
   letter-spacing: 0.015em;
-  background-image: linear-gradient(100deg, #ffe7a9 30%, #fffbf0 48%, #ffe7a9 66%);
+  /* Solid gold sits underneath and is clipped to the letters too, so the text
+     can never render transparent if the gradient layer misses a repaint —
+     that was making it blink out. The gradient is now only a highlight that
+     sweeps over the top, with fully transparent edges. */
+  background-color: #ffe7a9;
+  background-image: linear-gradient(100deg,
+    rgba(255, 251, 240, 0) 35%,
+    rgba(255, 251, 240, 0.95) 50%,
+    rgba(255, 251, 240, 0) 65%);
   background-size: 220% auto;
+  background-repeat: no-repeat;
   background-position: 200% center;
   background-clip: text;
   -webkit-background-clip: text;
