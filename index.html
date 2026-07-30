@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Headshot Photography</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="card">
+
+  <header class="header">
+    <h1>Your Name</h1>
+    <p class="tagline">Headshot Photography for Actors &amp; Creatives</p>
+  </header>
+
+  <!-- PHOTOS: swap the src on each img below to your real files (drop them in the /photos folder).
+       To add more than 3 photos, copy one whole <div class="photo"> block and paste it in. -->
+  <section class="photos">
+    <div class="photo"><img src="photos/photo1.svg" alt="Headshot sample 1"></div>
+    <div class="photo"><img src="photos/photo2.svg" alt="Headshot sample 2"></div>
+    <div class="photo"><img src="photos/photo3.svg" alt="Headshot sample 3"></div>
+  </section>
+
+  <!-- LINKS: replace each placeholder href below with your real link/number/email. -->
+  <section class="links">
+    <a class="btn btn-primary" href="https://fantastical.app/PLACEHOLDER" target="_blank" rel="noopener">
+      Book a Headshot Session
+    </a>
+    <a class="btn" href="sms:+15555550100">
+      Text Me
+    </a>
+    <a class="btn" href="mailto:you@example.com">
+      Email Me
+    </a>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Your Name</p>
+  </footer>
+
+</main>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
