@@ -237,57 +237,112 @@ body {
   color: #f5f3f0;
 }
 
-/* Home page only: soft grey bokeh, pure CSS (radial-gradient blobs + a single
-   blur filter) — no photo to decode, so this costs nothing at load time.
-   Toned down to greys rather than white so it stays in the background. */
-body:not(.about-page)::before {
+/* Home page only: a two-layer grey bokeh cityscape, pure CSS (radial-gradient
+   blobs + blur) — no photo to decode, so it costs nothing at load time.
+   ::before is the far, heavily defocused layer; ::after is a denser field of
+   smaller, sharper points weighted toward the lower half, like street-level
+   lights. The two different blur radii are what create the depth-of-field. */
+body:not(.about-page)::before,
+body:not(.about-page)::after {
   content: "";
   position: fixed;
-  inset: -80px;
+  inset: -100px;
   z-index: -1;
   pointer-events: none;
   background-repeat: no-repeat;
-  background-image:
-    radial-gradient(circle, rgba(190, 190, 190, 0.48) 0%, transparent 70%),
-    radial-gradient(circle, rgba(160, 160, 160, 0.40) 0%, transparent 70%),
-    radial-gradient(circle, rgba(150, 150, 150, 0.38) 0%, transparent 70%),
-    radial-gradient(circle, rgba(200, 200, 200, 0.44) 0%, transparent 70%),
-    radial-gradient(circle, rgba(140, 140, 140, 0.34) 0%, transparent 70%),
-    radial-gradient(circle, rgba(175, 175, 175, 0.46) 0%, transparent 70%),
-    radial-gradient(circle, rgba(155, 155, 155, 0.32) 0%, transparent 70%),
-    radial-gradient(circle, rgba(210, 210, 210, 0.36) 0%, transparent 70%),
-    radial-gradient(circle, rgba(165, 165, 165, 0.30) 0%, transparent 70%),
-    radial-gradient(circle, rgba(185, 185, 185, 0.34) 0%, transparent 70%);
-  background-size:
-    280px 280px, 190px 190px, 320px 320px, 160px 160px, 240px 240px,
-    130px 130px, 200px 200px, 110px 110px, 260px 260px, 150px 150px;
-  background-position:
-    12% 18%, 78% 12%, 48% 58%, 22% 78%, 86% 68%,
-    60% 28%, 34% 88%, 6% 52%, 94% 38%, 44% 8%;
-  filter: blur(32px);
-  animation: bokeh-drift 40s ease-in-out infinite alternate;
 }
 
-@keyframes bokeh-drift {
+/* Far layer — large, soft, heavily defocused. */
+body:not(.about-page)::before {
+  background-image:
+    radial-gradient(circle, rgba(196, 196, 196, 0.52) 0%, transparent 70%),
+    radial-gradient(circle, rgba(166, 166, 166, 0.44) 0%, transparent 70%),
+    radial-gradient(circle, rgba(154, 154, 154, 0.42) 0%, transparent 70%),
+    radial-gradient(circle, rgba(206, 206, 206, 0.48) 0%, transparent 70%),
+    radial-gradient(circle, rgba(146, 146, 146, 0.38) 0%, transparent 70%),
+    radial-gradient(circle, rgba(180, 180, 180, 0.50) 0%, transparent 70%),
+    radial-gradient(circle, rgba(158, 158, 158, 0.36) 0%, transparent 70%),
+    radial-gradient(circle, rgba(214, 214, 214, 0.40) 0%, transparent 70%),
+    radial-gradient(circle, rgba(170, 170, 170, 0.34) 0%, transparent 70%),
+    radial-gradient(circle, rgba(190, 190, 190, 0.38) 0%, transparent 70%),
+    radial-gradient(circle, rgba(200, 200, 200, 0.34) 0%, transparent 70%),
+    radial-gradient(circle, rgba(162, 162, 162, 0.30) 0%, transparent 70%);
+  background-size:
+    300px 300px, 200px 200px, 340px 340px, 170px 170px, 250px 250px, 140px 140px,
+    210px 210px, 120px 120px, 275px 275px, 160px 160px, 230px 230px, 185px 185px;
+  background-position:
+    12% 18%, 78% 12%, 48% 58%, 22% 78%, 86% 68%, 60% 28%,
+    34% 88%, 6% 52%, 94% 38%, 44% 8%, 70% 82%, 2% 30%;
+  filter: blur(38px);
+  animation: bokeh-far 40s ease-in-out infinite alternate;
+}
+
+/* Near layer — smaller, brighter, lightly defocused, clustered low. */
+body:not(.about-page)::after {
+  background-image:
+    radial-gradient(circle, rgba(222, 222, 222, 0.46) 0%, transparent 68%),
+    radial-gradient(circle, rgba(205, 205, 205, 0.40) 0%, transparent 68%),
+    radial-gradient(circle, rgba(235, 235, 235, 0.42) 0%, transparent 68%),
+    radial-gradient(circle, rgba(198, 198, 198, 0.36) 0%, transparent 68%),
+    radial-gradient(circle, rgba(228, 228, 228, 0.44) 0%, transparent 68%),
+    radial-gradient(circle, rgba(210, 210, 210, 0.34) 0%, transparent 68%),
+    radial-gradient(circle, rgba(240, 240, 240, 0.38) 0%, transparent 68%),
+    radial-gradient(circle, rgba(200, 200, 200, 0.32) 0%, transparent 68%),
+    radial-gradient(circle, rgba(218, 218, 218, 0.40) 0%, transparent 68%),
+    radial-gradient(circle, rgba(232, 232, 232, 0.36) 0%, transparent 68%),
+    radial-gradient(circle, rgba(206, 206, 206, 0.30) 0%, transparent 68%),
+    radial-gradient(circle, rgba(226, 226, 226, 0.34) 0%, transparent 68%),
+    radial-gradient(circle, rgba(214, 214, 214, 0.28) 0%, transparent 68%),
+    radial-gradient(circle, rgba(238, 238, 238, 0.32) 0%, transparent 68%);
+  background-size:
+    64px 64px, 46px 46px, 74px 74px, 40px 40px, 56px 56px, 68px 68px, 42px 42px,
+    60px 60px, 50px 50px, 78px 78px, 38px 38px, 62px 62px, 48px 48px, 70px 70px;
+  background-position:
+    8% 62%, 19% 79%, 27% 93%, 36% 70%, 44% 87%, 52% 96%, 58% 74%,
+    66% 89%, 73% 66%, 81% 83%, 89% 95%, 96% 72%, 14% 89%, 62% 57%;
+  filter: blur(13px);
+  animation: bokeh-near 52s ease-in-out infinite alternate;
+}
+
+@keyframes bokeh-far {
   0% {
     background-position:
-      12% 18%, 78% 12%, 48% 58%, 22% 78%, 86% 68%,
-      60% 28%, 34% 88%, 6% 52%, 94% 38%, 44% 8%;
+      12% 18%, 78% 12%, 48% 58%, 22% 78%, 86% 68%, 60% 28%,
+      34% 88%, 6% 52%, 94% 38%, 44% 8%, 70% 82%, 2% 30%;
   }
   50% {
     background-position:
-      18% 26%, 70% 20%, 54% 50%, 28% 70%, 78% 76%,
-      53% 36%, 40% 80%, 12% 46%, 88% 44%, 38% 14%;
+      18% 26%, 70% 20%, 54% 50%, 28% 70%, 78% 76%, 53% 36%,
+      40% 80%, 12% 46%, 88% 44%, 38% 14%, 63% 74%, 8% 38%;
   }
   100% {
     background-position:
-      8% 12%, 84% 14%, 42% 64%, 17% 84%, 92% 60%,
-      66% 22%, 28% 94%, 2% 58%, 98% 32%, 50% 4%;
+      8% 12%, 84% 14%, 42% 64%, 17% 84%, 92% 60%, 66% 22%,
+      28% 94%, 2% 58%, 98% 32%, 50% 4%, 76% 88%, 0% 24%;
+  }
+}
+
+@keyframes bokeh-near {
+  0% {
+    background-position:
+      8% 62%, 19% 79%, 27% 93%, 36% 70%, 44% 87%, 52% 96%, 58% 74%,
+      66% 89%, 73% 66%, 81% 83%, 89% 95%, 96% 72%, 14% 89%, 62% 57%;
+  }
+  50% {
+    background-position:
+      12% 57%, 23% 74%, 31% 88%, 40% 65%, 48% 82%, 56% 91%, 62% 69%,
+      70% 84%, 77% 61%, 85% 78%, 93% 90%, 92% 67%, 18% 84%, 66% 52%;
+  }
+  100% {
+    background-position:
+      5% 66%, 16% 83%, 24% 97%, 33% 74%, 41% 91%, 49% 99%, 55% 78%,
+      63% 93%, 70% 70%, 78% 87%, 86% 99%, 99% 76%, 11% 93%, 59% 61%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body:not(.about-page)::before {
+  body:not(.about-page)::before,
+  body:not(.about-page)::after {
     animation: none;
   }
 }
