@@ -52,6 +52,17 @@ body {
   margin-bottom: 30px;
 }
 
+.bio {
+  margin-bottom: 30px;
+}
+
+.bio p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #c9c5bc;
+}
+
 .photo {
   aspect-ratio: 4 / 5;
   overflow: hidden;
