@@ -8,7 +8,7 @@
 <meta name="keywords" content="Las Vegas headshot photographer, actor headshots Las Vegas, headshot photography Las Vegas, professional headshots Las Vegas, actor headshots Nevada, personal branding photographer Las Vegas">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="about-page">
@@ -28,24 +28,33 @@
 
   <header class="about-header">
     <h1>Jason Snow</h1>
-    <p class="about-tagline">Photos for Las Vegas Actors and Creatives</p>
+    <p class="about-tagline">Director, Photographer, and Actor</p>
   </header>
 
-  <!-- AVATAR + BIO: replace photos/avatar.svg with a real headshot, and swap the placeholder paragraph below. -->
+  <!-- AVATAR + BIO: replace photos/avatar.svg with a real headshot, and swap the placeholder paragraph below.
+       The avatar floats, so the bio text wraps around it. -->
   <section class="about-intro">
     <div class="avatar">
-      <img src="photos/avatar.svg" alt="Jason Snow">
+      <img src="photos/avatar.svg" alt="Jason Snow, Las Vegas photographer, director, and actor">
     </div>
     <p class="about-bio-text">
-      Placeholder bio — swap this out with a couple sentences about your background,
-      how you got into headshot photography, and what clients can expect from a session with you.
+      Jason Snow is a Las Vegas based photographer and director specializing in headshots
+      that make actors shine. He is also an actor and director with a unique eye for what
+      makes actors stand out to casting directors.
     </p>
   </section>
 
-  <!-- GALLERY: replace the two src attributes below with real photos (drop them in the /photos folder). -->
+  <!-- GALLERY: replace the two src attributes below with real photos (drop them in the /photos folder).
+       Keep the alt text and caption descriptive — both help image search. -->
   <section class="about-gallery">
-    <div class="about-photo photo-a"><img src="photos/about1.svg" alt="Photography sample 1"></div>
-    <div class="about-photo photo-b"><img src="photos/about2.svg" alt="Photography sample 2"></div>
+    <figure class="about-photo photo-a">
+      <div class="about-photo-frame"><img src="photos/about1.svg" alt="Behind the scenes at a Las Vegas headshot session"></div>
+      <figcaption class="about-caption">Behind the scenes at a Las Vegas session</figcaption>
+    </figure>
+    <figure class="about-photo photo-b">
+      <div class="about-photo-frame"><img src="photos/about2.svg" alt="Natural light setup used for Las Vegas actor headshots"></div>
+      <figcaption class="about-caption">Natural light setup for actor headshots</figcaption>
+    </figure>
   </section>
 
   <footer class="about-footer">

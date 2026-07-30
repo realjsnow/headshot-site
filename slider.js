@@ -79,11 +79,13 @@
   // --- Lightbox ---
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxCaption = document.getElementById('lightbox-caption');
   var closeBtn = document.getElementById('lightbox-close');
 
   function openLightbox(img) {
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
+    lightboxCaption.textContent = img.getAttribute('data-caption') || '';
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.classList.add('lightbox-open');

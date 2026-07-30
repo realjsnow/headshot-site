@@ -49,11 +49,29 @@
   to { opacity: 1; }
 }
 
-.lightbox-img {
-  max-width: 100%;
+.lightbox-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
   max-height: 100%;
+  min-height: 0;
+}
+
+.lightbox-img {
+  min-height: 0;
+  max-width: 100%;
   object-fit: contain;
   border-radius: 8px;
+}
+
+.lightbox-caption {
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: #8a8579;
+  text-align: center;
 }
 
 .lightbox-close {
@@ -176,10 +194,12 @@ body {
 }
 
 .header h1 {
-  margin: 0 0 8px;
-  font-size: 1.7rem;
+  margin: 0 0 10px;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 2.1rem;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
   color: #ffffff;
 }
 
@@ -255,6 +275,10 @@ body {
   gap: 12px;
 }
 
+.btn-text.copied .btn-text-label {
+  color: #7fd1a3;
+}
+
 .btn {
   display: block;
   text-align: center;
@@ -311,6 +335,10 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  /* Stroke is painted under the gold fill so the outline reads as a thin
+     white edge instead of eating into the letterforms. */
+  -webkit-text-stroke: 0.6px rgba(255, 255, 255, 0.9);
+  paint-order: stroke fill;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   animation: gold-shine 4.5s ease-in-out infinite;
 }
@@ -388,10 +416,12 @@ body.about-page {
 }
 
 .about-header h1 {
-  margin: 0 0 10px;
-  font-size: 2.5rem;
+  margin: 0 0 12px;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 3rem;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
   color: #ffffff;
 }
 
@@ -404,19 +434,25 @@ body.about-page {
 }
 
 .about-intro {
-  display: flex;
-  align-items: flex-start;
-  gap: 28px;
   margin-bottom: 56px;
 }
 
+/* Float rather than flex so the bio copy wraps around the portrait. */
 .avatar {
-  flex: 0 0 88px;
-  width: 88px;
-  height: 88px;
+  float: left;
+  width: 132px;
+  height: 132px;
+  margin: 4px 24px 12px 0;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid #262626;
+  shape-outside: circle(50%);
+}
+
+.about-intro::after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 .avatar img {
@@ -428,11 +464,9 @@ body.about-page {
 
 .about-bio-text {
   margin: 0;
-  max-width: 52ch;
   font-size: 1.05rem;
   line-height: 1.8;
   color: #c9c5bc;
-  padding-top: 4px;
 }
 
 .about-gallery {
@@ -444,23 +478,28 @@ body.about-page {
 }
 
 .about-photo {
+  margin: 0;
+}
+
+.about-photo-frame {
   overflow: hidden;
   border-radius: 6px;
   border: 1px solid #262626;
 }
 
-.about-photo.photo-a {
+.about-photo.photo-a .about-photo-frame {
   aspect-ratio: 4 / 3;
 }
 
-.about-photo.photo-b {
+.about-photo.photo-b .about-photo-frame {
   aspect-ratio: 16 / 10;
 }
 
-@media (max-width: 480px) {
-  .about-gallery {
-    grid-template-columns: 1fr;
-  }
+.about-caption {
+  margin-top: 9px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #8a8579;
 }
 
 .about-photo img {
@@ -476,10 +515,29 @@ body.about-page {
   color: #5c584f;
 }
 
-@media (max-width: 480px) {
-  .about-intro {
+/* Stack the gallery and let each photo run full width rather than holding a
+   two-column grid on narrow screens. */
+@media (max-width: 700px) {
+  .about-gallery {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+    gap: 28px;
+  }
+
+  .about-photo.photo-a .about-photo-frame,
+  .about-photo.photo-b .about-photo-frame {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .avatar {
+    width: 104px;
+    height: 104px;
+    margin: 2px 18px 8px 0;
+  }
+
+  .about-bio-text {
+    font-size: 1rem;
   }
 }
