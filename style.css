@@ -107,7 +107,7 @@ body {
 }
 
 .shimmer-text {
-  background-image: linear-gradient(100deg, #ffffff 30%, #ffe9ec 45%, #ffffff 60%);
+  background-image: linear-gradient(100deg, #f2c9ce 30%, #ffffff 48%, #f2c9ce 66%);
   background-size: 250% auto;
   background-clip: text;
   -webkit-background-clip: text;
