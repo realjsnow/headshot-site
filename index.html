@@ -25,24 +25,23 @@
 <main class="card">
 
   <header class="header">
-    <h1>Book Photos With Jason</h1>
+    <h1>Book Photos with Jason Snow</h1>
     <p class="tagline">For Actors &amp; Creatives in Las Vegas</p>
   </header>
 
-  <!-- TESTIMONIALS: placeholder quotes — swap in real ones.
-       They fade through one at a time. Add or remove <blockquote> blocks freely. -->
+  <!-- TESTIMONIALS: fade through one at a time. Add or remove <blockquote> blocks freely. -->
   <section class="testimonials" id="testimonials" aria-label="Client testimonials">
     <blockquote class="quote is-active">
-      <p>“Booked two auditions the week I sent these out.”</p>
-      <cite>Placeholder — Actor</cite>
+      <p>“Jason takes the best head shots in Las Vegas. All my actors use him and many casting directors recommend him.”</p>
+      <cite>Casting Director Rebecca Onkoski</cite>
     </blockquote>
     <blockquote class="quote">
-      <p>“Jason made me forget there was a camera there at all.”</p>
-      <cite>Placeholder — Stage Actor</cite>
+      <p>“Every casting director in Las Vegas I know prefers his photos. They just make everyone look good.”</p>
+      <cite>Anthony Logan, Always Talent Agency</cite>
     </blockquote>
     <blockquote class="quote">
       <p>“Finally a headshot that actually looks like me.”</p>
-      <cite>Placeholder — Creative</cite>
+      <cite>David Malewicz, Las Vegas actor</cite>
     </blockquote>
   </section>
 
@@ -64,14 +63,6 @@
     </div>
   </section>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Close photo">&larr; Back</button>
-    <figure class="lightbox-figure">
-      <img class="lightbox-img" id="lightbox-img" src="" alt="" draggable="false">
-      <figcaption class="lightbox-caption" id="lightbox-caption"></figcaption>
-    </figure>
-  </div>
-
   <!-- LINKS: replace each placeholder href below with your real link/number/email. -->
   <section class="links">
     <a class="btn btn-primary sparkle-wrap" href="https://fantastical.app/realjsnow/headshots-with-jason-snow" target="_blank" rel="noopener">
@@ -88,7 +79,7 @@
       <span class="btn-text-label">Text Me</span>
     </a>
     <a class="btn" href="about.html">
-      About Me
+      About Jason
     </a>
   </section>
 
@@ -97,6 +88,20 @@
   </footer>
 
 </main>
+
+<!-- Lightbox lives outside .card on purpose: .card is animated with a CSS
+     transform, and any transformed ancestor becomes the containing block for
+     position:fixed descendants — which broke this lightbox's full-viewport
+     sizing and centering. Keep it a direct child of <body>. -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close photo">&larr; Back</button>
+  <div class="lightbox-scroll">
+    <figure class="lightbox-figure">
+      <img class="lightbox-img" id="lightbox-img" src="" alt="" draggable="false">
+      <figcaption class="lightbox-caption" id="lightbox-caption"></figcaption>
+    </figure>
+  </div>
+</div>
 
 <script src="protect-images.js"></script>
 <script src="slider.js"></script>

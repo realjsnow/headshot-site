@@ -28,19 +28,22 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* The lightbox itself is the scroll container — .lightbox-scroll centers its
+   content using min-height (not height), which is what lets a photo taller
+   than the viewport still scroll into view instead of being stuck centered
+   with its top half inaccessible (a classic flexbox-centering trap). */
 .lightbox {
   position: fixed;
   inset: 0;
   z-index: 9000;
   background: #0a0a0a;
   display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 88px 20px 32px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .lightbox.open {
-  display: flex;
+  display: block;
   animation: lightbox-in 0.25s ease-out both;
 }
 
@@ -49,25 +52,32 @@
   to { opacity: 1; }
 }
 
+.lightbox-scroll {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 84px 20px 40px;
+  box-sizing: border-box;
+}
+
 .lightbox-figure {
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
-  max-height: 100%;
-  min-height: 0;
 }
 
 .lightbox-img {
-  min-height: 0;
+  display: block;
   max-width: 100%;
+  max-height: calc(100vh - 140px);
   object-fit: contain;
   border-radius: 8px;
 }
 
 .lightbox-caption {
-  flex: 0 0 auto;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
   color: #8a8579;
@@ -75,9 +85,10 @@
 }
 
 .lightbox-close {
-  position: absolute;
+  position: fixed;
   top: 24px;
   left: 24px;
+  z-index: 1;
   padding: 14px 24px;
   font-family: inherit;
   font-size: 1rem;
@@ -184,7 +195,7 @@ body {
   background: #161616;
   border: 1px solid #262626;
   border-radius: 20px;
-  padding: 44px 28px 32px;
+  padding: 30px 28px 32px;
   box-shadow: 0 30px 70px rgba(0,0,0,0.55);
 }
 
@@ -503,6 +514,7 @@ body.about-page {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 15%;
   display: block;
 }
 
@@ -518,25 +530,20 @@ body.about-page {
   grid-template-columns: 1.2fr 1fr;
   gap: 18px;
   margin-bottom: 56px;
-  align-items: end;
+  align-items: start;
 }
 
 .about-photo {
   margin: 0;
 }
 
+/* No forced aspect-ratio or object-fit:cover here on purpose — these are
+   portrait photos, and cropping them to a landscape box chopped off the
+   subject. Each image renders at its own natural proportions instead. */
 .about-photo-frame {
   overflow: hidden;
   border-radius: 6px;
   border: 1px solid #262626;
-}
-
-.about-photo.photo-a .about-photo-frame {
-  aspect-ratio: 4 / 3;
-}
-
-.about-photo.photo-b .about-photo-frame {
-  aspect-ratio: 16 / 10;
 }
 
 .about-caption {
@@ -547,10 +554,9 @@ body.about-page {
 }
 
 .about-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   display: block;
+  width: 100%;
+  height: auto;
 }
 
 .about-footer p {
