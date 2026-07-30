@@ -237,6 +237,61 @@ body {
   color: #f5f3f0;
 }
 
+/* Home page only: soft grey bokeh, pure CSS (radial-gradient blobs + a single
+   blur filter) — no photo to decode, so this costs nothing at load time.
+   Toned down to greys rather than white so it stays in the background. */
+body:not(.about-page)::before {
+  content: "";
+  position: fixed;
+  inset: -80px;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-image:
+    radial-gradient(circle, rgba(190, 190, 190, 0.48) 0%, transparent 70%),
+    radial-gradient(circle, rgba(160, 160, 160, 0.40) 0%, transparent 70%),
+    radial-gradient(circle, rgba(150, 150, 150, 0.38) 0%, transparent 70%),
+    radial-gradient(circle, rgba(200, 200, 200, 0.44) 0%, transparent 70%),
+    radial-gradient(circle, rgba(140, 140, 140, 0.34) 0%, transparent 70%),
+    radial-gradient(circle, rgba(175, 175, 175, 0.46) 0%, transparent 70%),
+    radial-gradient(circle, rgba(155, 155, 155, 0.32) 0%, transparent 70%),
+    radial-gradient(circle, rgba(210, 210, 210, 0.36) 0%, transparent 70%),
+    radial-gradient(circle, rgba(165, 165, 165, 0.30) 0%, transparent 70%),
+    radial-gradient(circle, rgba(185, 185, 185, 0.34) 0%, transparent 70%);
+  background-size:
+    280px 280px, 190px 190px, 320px 320px, 160px 160px, 240px 240px,
+    130px 130px, 200px 200px, 110px 110px, 260px 260px, 150px 150px;
+  background-position:
+    12% 18%, 78% 12%, 48% 58%, 22% 78%, 86% 68%,
+    60% 28%, 34% 88%, 6% 52%, 94% 38%, 44% 8%;
+  filter: blur(32px);
+  animation: bokeh-drift 40s ease-in-out infinite alternate;
+}
+
+@keyframes bokeh-drift {
+  0% {
+    background-position:
+      12% 18%, 78% 12%, 48% 58%, 22% 78%, 86% 68%,
+      60% 28%, 34% 88%, 6% 52%, 94% 38%, 44% 8%;
+  }
+  50% {
+    background-position:
+      18% 26%, 70% 20%, 54% 50%, 28% 70%, 78% 76%,
+      53% 36%, 40% 80%, 12% 46%, 88% 44%, 38% 14%;
+  }
+  100% {
+    background-position:
+      8% 12%, 84% 14%, 42% 64%, 17% 84%, 92% 60%,
+      66% 22%, 28% 94%, 2% 58%, 98% 32%, 50% 4%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:not(.about-page)::before {
+    animation: none;
+  }
+}
+
 .card {
   width: 100%;
   max-width: 420px;
