@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
-  <rect width="600" height="800" fill="#1a1c1b"/>
-  <rect x="1" y="1" width="598" height="798" fill="none" stroke="#333333" stroke-width="2" stroke-dasharray="10 8"/>
-  <circle cx="300" cy="330" r="95" fill="#292b2a"/>
-  <rect x="180" y="460" width="240" height="150" rx="10" fill="#292b2a"/>
-  <text x="300" y="700" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#6f675a" text-anchor="middle">Replace: about2.jpg</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <rect width="800" height="500" fill="#1a1c1b"/>
+  <rect x="1" y="1" width="798" height="498" fill="none" stroke="#333333" stroke-width="2" stroke-dasharray="10 8"/>
+  <circle cx="400" cy="200" r="68" fill="#292b2a"/>
+  <rect x="310" y="295" width="180" height="105" rx="10" fill="#292b2a"/>
+  <text x="400" y="450" font-family="Helvetica, Arial, sans-serif" font-size="22" fill="#6f675a" text-anchor="middle">Replace: about2.jpg</text>
 </svg>
